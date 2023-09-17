@@ -7,6 +7,8 @@ public class Coche {
 	protected double posY; // Posición en Y (vertical)
 	private String piloto; // Nombre de piloto
 	
+	//Prueba
+	
 	public double getMiVelocidad() {
 		return miVelocidad;
 	}
