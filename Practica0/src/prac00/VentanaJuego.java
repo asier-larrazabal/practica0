@@ -22,6 +22,7 @@ public class VentanaJuego extends JFrame{
 	public VentanaJuego() {
 		
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setTitle("Coche");
         this.pnlMain = new JPanel();
         this.setSize(1000, 500);
         JPanel pnlBotones= new JPanel();
@@ -38,7 +39,6 @@ public class VentanaJuego extends JFrame{
         pnlBotones.add(btnGiraDer);
         this.add((Component)pnlBotones, "South");
         
-		
         btnAcelerar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -110,8 +110,7 @@ public class VentanaJuego extends JFrame{
                     VentanaJuego.this.hilo.acaba();
                 }
             }
-        });
-        
+        });      
 	}
 	
 	public void crearCoche(int x, int y) {
@@ -128,7 +127,6 @@ public class VentanaJuego extends JFrame{
 	        miVentana.hilo = miVentana.new MiHilo();
 	        Thread nuevoHilo = new Thread(miVentana.hilo);
 	        nuevoHilo.start();
-
 	 }
 
 	 class MiHilo implements Runnable {
@@ -167,5 +165,5 @@ public class VentanaJuego extends JFrame{
 	        public void acaba() {
 	            this.sigo = false;
 	        }
-	    }
+	 }
 }

@@ -1,9 +1,9 @@
 package prac00;
 
 public class Coche {
-	private double miVelocidad = 0; // Velocidad en pixeles/segundo
-	protected double miDireccionActual = 0; // Dirección en la que estoy mirando en grados (de 0 a 360)
-	protected double posX; // Posición en X del cohe (horizontal)
+	private double miVelocidad = 0; // Velocidad (pixeles/segundo)
+	protected double miDireccionActual = 0; // Dirección del coche en grados (de 0 a 360)
+	protected double posX; // Posición en X del coche (horizontal)
 	protected double posY; // Posición en Y (vertical)
 	private String piloto; // Nombre de piloto
 	

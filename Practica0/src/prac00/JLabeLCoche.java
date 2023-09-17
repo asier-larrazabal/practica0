@@ -16,10 +16,10 @@ public class JLabeLCoche extends JLabel{
 	
 	public JLabeLCoche() {
         try {
-            this.setIcon(new ImageIcon(JLabeLCoche.class.getResource("coche.png").toURI().toURL()));
+            this.setIcon(new ImageIcon(JLabeLCoche.class.getResource("coche.png")));
         }
         catch (Exception e) {
-            System.err.println("Error en carga de recurso: coche.png no encontrado");
+            System.err.println("No se ha encontrado el archivo");
             e.printStackTrace();
         }
         this.setBounds(0, 0, 100, 100);
