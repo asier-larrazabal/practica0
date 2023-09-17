@@ -1,7 +1,5 @@
 package prac00;
 
-
-
 public class CocheJuego extends Coche{
 	protected JLabeLCoche coche = new JLabeLCoche();
 	
@@ -26,6 +24,5 @@ public class CocheJuego extends Coche{
         super.setMiDireccionActual(dir);
         this.coche.setGiro(this.miDireccionActual);
         this.coche.repaint();
-    
     }
 }

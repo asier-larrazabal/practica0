@@ -5,12 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.*;
-
-
 
 public class VentanaJuego extends JFrame{
 
@@ -21,8 +21,9 @@ public class VentanaJuego extends JFrame{
 	
 	public VentanaJuego() {
 		
-        this.setDefaultCloseOperation(2);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.pnlMain = new JPanel();
+        this.setSize(1000, 500);
         JPanel pnlBotones= new JPanel();
         JButton btnAcelerar = new JButton("Acelera");
         JButton btnFrenar = new JButton("Frena");
@@ -36,7 +37,7 @@ public class VentanaJuego extends JFrame{
         pnlBotones.add(btnGiraIzq);
         pnlBotones.add(btnGiraDer);
         this.add((Component)pnlBotones, "South");
-        this.setSize(1000, 500);
+        
 		
         btnAcelerar.addActionListener(new ActionListener() {
 			@Override
@@ -73,11 +74,29 @@ public class VentanaJuego extends JFrame{
 	             System.out.println("Direccion: " + VentanaJuego.this.coche1.getMiDireccionActual());
 	        }
 		});
-        
+        pnlMain.addKeyListener(new KeyAdapter() {
+		
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getKeyCode() == 87) { //Si pulsamos "w" aceleramos
+					VentanaJuego.this.coche1.acelera(5.0);
+					System.out.println("Velocidad: " + VentanaJuego.this.coche1.getMiVelocidad());
+				} else if(e.getKeyCode() == 65) { // Si pulsamos "a" giramos hacia la izquierda
+					VentanaJuego.this.coche1.gira(10);
+					System.out.println("Direccion: " + VentanaJuego.this.coche1.getMiDireccionActual());
+				}else if(e.getKeyCode() == 83) { // Si pulsamos "s" frenamos
+					VentanaJuego.this.coche1.acelera(-5.0);
+					System.out.println("Velocidad: " + VentanaJuego.this.coche1.getMiVelocidad());
+				}else if(e.getKeyCode() == 68) { // Si pulsamos "d" giramos hacia la izquierda
+					VentanaJuego.this.coche1.gira(-10);
+					System.out.println("Direccion: " + VentanaJuego.this.coche1.getMiDireccionActual());
+				}
+			}
+		});
         this.pnlMain.setFocusable(true);
         this.pnlMain.requestFocus();
         this.pnlMain.addFocusListener(new FocusAdapter(){
-
             @Override
             public void focusLost(FocusEvent e) {
                 VentanaJuego.this.pnlMain.requestFocus();
@@ -98,8 +117,7 @@ public class VentanaJuego extends JFrame{
 	public void crearCoche(int x, int y) {
 		this.coche1 = new CocheJuego();
 		this.coche1.setPosicion(x, y);
-		this.pnlMain.add(this.coche1.getGrafico());
-		
+		this.pnlMain.add(this.coche1.getGrafico());	
 	}
 	
 	 public static void main(String[] args) {
@@ -111,20 +129,19 @@ public class VentanaJuego extends JFrame{
 	        Thread nuevoHilo = new Thread(miVentana.hilo);
 	        nuevoHilo.start();
 
-	    }
+	 }
 
 	 class MiHilo implements Runnable {
 	        boolean sigo = true;
 
 	        MiHilo() {
 	        }
-
 	        @Override
 	        public void run() {
 	            while (this.sigo) {
 	                double dir = 0;
 	                VentanaJuego.this.coche1.mueve(0.01);
-	                if (VentanaJuego.this.coche1.getPosX() < -50.0 || VentanaJuego.this.coche1.getPosX() > (double)(VentanaJuego.this.pnlMain.getWidth() - 50)) {
+	                if (VentanaJuego.this.coche1.getPosX() < -25 || VentanaJuego.this.coche1.getPosX() > (double)(VentanaJuego.this.pnlMain.getWidth() - 75)) {
 	                    System.out.println("Choca X");
 	                    dir = VentanaJuego.this.coche1.getMiDireccionActual();
 	                    dir = 180.0 - dir;
@@ -133,7 +150,7 @@ public class VentanaJuego extends JFrame{
 	                    }
 	                    VentanaJuego.this.coche1.setMiDireccionActual(dir);
 	                }
-	                if (VentanaJuego.this.coche1.getPosY() < -50.0 || VentanaJuego.this.coche1.getPosY() > (double)(VentanaJuego.this.pnlMain.getHeight() - 50)) {
+	                if (VentanaJuego.this.coche1.getPosY() < -25 || VentanaJuego.this.coche1.getPosY() > (double)(VentanaJuego.this.pnlMain.getHeight() - 75)) {
 	                    System.out.println("Choca Y");
 	                    dir = VentanaJuego.this.coche1.getMiDireccionActual();
 	                    dir = 360.0 - dir;
@@ -151,7 +168,4 @@ public class VentanaJuego extends JFrame{
 	            this.sigo = false;
 	        }
 	    }
-	
-	
-
 }

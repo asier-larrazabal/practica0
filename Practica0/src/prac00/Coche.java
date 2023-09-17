@@ -1,13 +1,11 @@
 package prac00;
 
 public class Coche {
-	private double miVelocidad = 0; // Velocidad en pixels/segundo
+	private double miVelocidad = 0; // Velocidad en pixeles/segundo
 	protected double miDireccionActual = 0; // Dirección en la que estoy mirando en grados (de 0 a 360)
-	protected double posX; // Posición en X (horizontal)
+	protected double posX; // Posición en X del cohe (horizontal)
 	protected double posY; // Posición en Y (vertical)
 	private String piloto; // Nombre de piloto
-	
-	//Prueba
 	
 	public double getMiVelocidad() {
 		return miVelocidad;
@@ -44,7 +42,7 @@ public class Coche {
 		this.piloto = piloto;
 	}
 	
-	public Coche() {
+	public Coche() { // Constructor vacío
 		super();
 		this.miVelocidad = 0;
 		this.miDireccionActual = 0;
@@ -53,7 +51,7 @@ public class Coche {
 		this.piloto = "";
 	}
 	
-	public Coche(double miVelocidad, double miDireccionActual, double posX, double posY, String piloto) {
+	public Coche(double miVelocidad, double miDireccionActual, double posX, double posY, String piloto) { // Constructor con argumentos
 		super();
 		this.miVelocidad = miVelocidad;
 		this.miDireccionActual = miDireccionActual;
@@ -72,7 +70,7 @@ public class Coche {
 	 * @param giro Angulo de giro a sumar o restar de la dirección actual, en grados (-180 a +180)
 	 */
 	 public void gira(double giro) {
-		 this.setMiDireccionActual(this.miDireccionActual + giro);
+		 this.setMiDireccionActual(this.miDireccionActual + giro); //Al introducir unos grados, se suman a nuestra dirección actual
 	 }
 	 /** Cambia la posición del coche dependiendo de su velocidad y dirección
 	 * @param tiempoDeMovimiento Tiempo transcurrido, en segundos
@@ -87,8 +85,4 @@ public class Coche {
 		return "Coche [miVelocidad=" + miVelocidad + ", miDireccionActual=" + miDireccionActual + ", posX=" + posX
 				+ ", posY=" + posY + ", piloto=" + piloto + "]";
 	}
-	
-	
-	
-	
 }

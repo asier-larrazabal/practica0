@@ -41,5 +41,4 @@ public class JLabeLCoche extends JLabel{
         g2.rotate(this.miGiro, 50.0, 50.0);
         g2.drawImage(img, 0, 0, 100, 100, null);
     }
-
 }
